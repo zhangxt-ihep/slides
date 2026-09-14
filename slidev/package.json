@@ -1,0 +1,20 @@
+{
+  "name": "ihep-fts-workshop-report",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "slidev slides-v2.md --bind 127.0.0.1 --port 3030",
+    "dev:v2": "slidev slides-v2.md --bind 127.0.0.1 --port 3030",
+    "build": "slidev build slides-v2.md --without-notes",
+    "export": "slidev export slides-v2.md --per-slide --output qa/output/FTS_IHEP_v2.pdf",
+    "export:v2": "slidev export slides-v2.md --per-slide --output qa/output/FTS_IHEP_v2.pdf",
+    "check": "node qa/check-v2.mjs && node qa/check-juno-map.mjs"
+  },
+  "devDependencies": {
+    "@fontsource/arimo": "5.3.0",
+    "@slidev/cli": "52.19.1",
+    "playwright-chromium": "1.63.0",
+    "slidev-theme-scholarly": "1.4.1",
+    "vue": "3.5.42"
+  }
+}
