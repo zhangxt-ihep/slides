@@ -1,0 +1,8 @@
+artifacts
+slidev/node_modules/
+slidev/dist/
+slidev/dist-v2/
+slidev/qa/output/
+__pycache__/
+*.log
+*.tmp
