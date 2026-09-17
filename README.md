@@ -11,10 +11,11 @@ Slidev hub — 所有报告共用一个环境（依赖、主题只装一次）�
 
 - `slidev/`: hub 根 — 共享依赖（`package.json`）、共享资源（`public/`）、地图脚本、QA 工具
 - `slidev/slides/<name>/`: 每个报告一个目录（自包含）
-  - `slides.md`: deck 入口
+  - `slides.md`: deck 入口（部署的入口）
   - `style.css` 或 `styles/index.css`: **deck 私有样式**（按需自建）
   - `public/`: deck 私有资源（或软链到 hub 共享 `public/`）
   - `assets/`: 源资源
+  - 额外的 `*.md`（如 juno 的 `plenary-summary.md`）保留在 deck 内，**不参与部署**（本地可预览/导出）
 - `docs/`: provenance 与版权说明
 - `slidev/new-report.sh`: 一键新建报告
 
