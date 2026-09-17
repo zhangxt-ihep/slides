@@ -1,4 +1,4 @@
-name: Deploy Slidev deck
+name: Deploy Slidev decks
 
 on:
   workflow_dispatch:
@@ -29,18 +29,39 @@ jobs:
         run: npm ci
         env:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
-      - name: Check source
+      - name: Check sources
         working-directory: slidev
         run: npm run check
-      - name: Build deck
+      - name: Build all decks
         working-directory: slidev
-        run: npm run build -- --base /${{ github.event.repository.name }}/
+        run: |
+          set -e
+          SITE="$(pwd)/_site"
+          rm -rf "$SITE" && mkdir -p "$SITE"
+          REPO="${{ github.event.repository.name }}"
+          for dir in slides/*/; do
+            name="$(basename "$dir")"
+            echo "=== Building $name ==="
+            npx slidev build "$dir/slides.md" --without-notes \
+              --out "$SITE/$name" --base "/$REPO/$name/"
+          done
+          # 根导航页
+          {
+            echo '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Slides</title>'
+            echo '<style>body{font-family:system-ui;max-width:640px;margin:60px auto;padding:0 20px}li{margin:8px 0}</style>'
+            echo '</head><body><h1>Slide decks</h1><ul>'
+            for dir in slides/*/; do
+              name="$(basename "$dir")"
+              echo "<li><a href=\"./$name/\">$name</a></li>"
+            done
+            echo '</ul></body></html>'
+          } > "$SITE/index.html"
       - uses: actions/configure-pages@v6
         with:
           enablement: true
       - uses: actions/upload-pages-artifact@v5
         with:
-          path: slidev/dist
+          path: slidev/_site
 
   deploy:
     environment:

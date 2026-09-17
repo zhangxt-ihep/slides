@@ -7,7 +7,7 @@ import { parseSync } from '@slidev/parser'
 const output = new URL('./output/', import.meta.url)
 await mkdir(fileURLToPath(output), { recursive: true })
 const baseUrl = process.env.BROWSER_BASE_URL ?? 'http://127.0.0.1:3030'
-const source = await readFile(new URL('../slides-v2.md', import.meta.url), 'utf8')
+const source = await readFile(new URL('../slides/fts-xrootd-2026/slides.md', import.meta.url), 'utf8')
 const parsed = parseSync(source)
 parsed.slides.forEach((slide, index) => {
    assert.equal(typeof slide.frontmatter.title, 'string', `Slide ${index + 1}: title must be a scalar string`)

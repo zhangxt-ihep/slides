@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url'
 import { chromium } from 'playwright-chromium'
 import { parseSync } from '@slidev/parser'
 
-const pageCount = parseSync(await readFile(new URL('../slides-v2.md', import.meta.url), 'utf8')).slides.length
+const pageCount = parseSync(await readFile(new URL('../slides/fts-xrootd-2026/slides.md', import.meta.url), 'utf8')).slides.length
 const output = new URL('./output/', import.meta.url)
 await mkdir(fileURLToPath(output), { recursive: true })
 const baseUrl = process.env.BROWSER_BASE_URL ?? 'http://127.0.0.1:3030'

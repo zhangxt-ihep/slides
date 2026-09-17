@@ -3,7 +3,7 @@ import { existsSync, readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { parseSync } from '@slidev/parser'
 
-const entry = fileURLToPath(new URL('../slides-v2.md', import.meta.url))
+const entry = fileURLToPath(new URL('../slides/fts-xrootd-2026/slides.md', import.meta.url))
 assert.ok(existsSync(entry), 'The final v2 entry must exist')
 const allSlides = parseSync(readFileSync(entry, 'utf8')).slides
 const deck = { slides: allSlides.filter(slide => slide.frontmatter.layout !== 'section') }
