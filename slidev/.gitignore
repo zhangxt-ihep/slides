@@ -3,3 +3,4 @@ dist/
 _site/
 qa/output/
 .slidev/
+artifacts
