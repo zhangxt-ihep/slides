@@ -22,7 +22,8 @@ cd "$target"
 
 # 共享资源软链接（slidev 的 root 跟随 entry，所以需要）
 ln -s ../../public public
-ln -s ../../style.css style.css
+
+# style.css: 每个 deck 私有的样式文件（按需自建，参考 fts-xrootd-2026/style.css）
 
 cat > slides.md << EOF
 ---

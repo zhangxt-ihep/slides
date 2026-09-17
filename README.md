@@ -8,10 +8,11 @@ Slidev hub — 所有报告共用一个环境（依赖、主题、样式只装�
 
 ## Layout
 
-- `slidev/`: hub 根 — 共享依赖（`package.json`）、共享样式（`style.css`）、共享资源（`public/`）、地图脚本、QA 工具
+- `slidev/`: hub 根 — 共享依赖（`package.json`）、共享资源（`public/`）、地图脚本、QA 工具
 - `slidev/slides/<name>/`: 每个报告一个目录
   - `slides.md`: deck 入口
-  - `public` / `style.css`: 指向 hub 共享资源的相对软链接（slidev 的 root 跟随 entry 位置，软链让共享资源在新位置可用）
+  - `style.css`: **deck 私有样式**（按需自建；起点可参考 `fts-xrootd-2026/style.css`）
+  - `public`: 指向 hub 共享资源的相对软链接（slidev 的 root 跟随 entry 位置，软链让共享资源在新位置可用）
 - `slidev/slides/fts-xrootd-2026/`: FTS-XRootD Workshop 2026 报告（原 `slides-v2.md`）
 - `docs/`: provenance 与版权说明
 - `slidev/new-report.sh`: 一键新建报告（零配置）
