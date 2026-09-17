@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Loading…</title>
+<script>
+// GitHub Pages SPA fallback for multi-deck hub.
+// /<repo>/<deck>/<page> -> loads that deck's SPA entry, preserving the URL
+// so the client router renders the requested slide.
+(async function () {
+  var parts = location.pathname.split('/').filter(Boolean);
+  if (parts.length >= 2) {
+    var deckBase = '/' + parts[0] + '/' + parts[1] + '/';
+    try {
+      var r = await fetch(deckBase + 'index.html');
+      if (r.ok) {
+        document.open();
+        document.write(await r.text());
+        document.close();
+        return;
+      }
+    } catch (e) { /* fall through */ }
+    location.replace(deckBase);
+  } else {
+    location.replace('/' + (parts[0] || '') + '/');
+  }
+})();
+</script>
+</head>
+<body></body>
+</html>
