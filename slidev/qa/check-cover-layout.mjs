@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url'
 const institution = 'Institute of High Energy Physics, Chinese Academy of Sciences'
 const output = new URL('./output/', import.meta.url)
 await mkdir(fileURLToPath(output), { recursive: true })
-const options = await resolveOptions({ entry: 'slides-v2.md' }, 'export')
+const options = await resolveOptions({ entry: 'slides/fts-xrootd-2026/slides.md' }, 'export')
 const server = await createServer(options, { server: { port: 12446 }, clearScreen: false })
 await server.listen()
 const port = server.httpServer.address().port

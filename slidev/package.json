@@ -3,11 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "slidev slides-v2.md --bind 127.0.0.1 --port 3030",
-    "dev:v2": "slidev slides-v2.md --bind 127.0.0.1 --port 3030",
-    "build": "slidev build slides-v2.md --without-notes",
-    "export": "slidev export slides-v2.md --per-slide --output qa/output/FTS_IHEP_v2.pdf",
-    "export:v2": "slidev export slides-v2.md --per-slide --output qa/output/FTS_IHEP_v2.pdf",
+    "dev": "slidev slides/fts-xrootd-2026/slides.md --bind 127.0.0.1 --port 3030",
+    "build": "slidev build slides/fts-xrootd-2026/slides.md --without-notes",
+    "export": "slidev export slides/fts-xrootd-2026/slides.md --per-slide --output qa/output/FTS_IHEP_v2.pdf",
     "check": "node qa/check-v2.mjs && node qa/check-juno-map.mjs"
   },
   "devDependencies": {
