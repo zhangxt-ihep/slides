@@ -4,3 +4,4 @@ _site/
 qa/output/
 .slidev/
 artifacts
+private/

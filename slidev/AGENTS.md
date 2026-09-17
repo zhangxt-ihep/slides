@@ -40,8 +40,24 @@ Agent 只需输出到 `artifacts/`，不用记 Nextcloud 绝对路径。
 5. 产物落在 `artifacts/`（= Nextcloud），自动同步（5 分钟内）；
    需立即同步：`systemctl start nextcloud-sync.service`
 
+## 私有 deck（不公开的报告）
+
+不公开的报告放 `private/<name>/`（已 gitignore，**永不进 git、永不部署**）：
+
+```bash
+./new-report.sh --private <name>              # 创建
+npx slidev private/<name>/slides.md           # 本地预览
+npx slidev export private/<name>/slides.md --per-slide \
+  --output "private/<name>/artifacts/<名字>.pdf"   # 导出（artifacts 软链可选 → Nextcloud）
+```
+
+- **永远不要** `git add private/`（也不要 `-f` 强加）—— 私有源码必须只留在本机
+- **不要**把它移到 `slides/` 下（那会被 CI 构建并发布）
+- 产物要分享时，照旧建 `artifacts` 软链指向 Nextcloud
+
 ## 约定
 
+- 私有 deck 只放 `private/`；`slides/` 下的一切都会被部署
 - `artifacts` 软链**不提交 git**（已在 `.gitignore`）
 - 产物**只写 `artifacts/`**，不要直接写 Nextcloud 绝对路径
 - 只有 `slides.md` 参与部署；额外 `*.md`（如 juno 的 `plenary-summary.md`）保留在 deck 内不部署

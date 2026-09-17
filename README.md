@@ -16,6 +16,7 @@ Slidev hub — 所有报告共用一个环境（依赖、主题只装一次）�
   - `public/`: deck 私有资源（或软链到 hub 共享 `public/`）
   - `assets/`: 源资源
   - 额外的 `*.md`（如 juno 的 `plenary-summary.md`）保留在 deck 内，**不参与部署**（本地可预览/导出）
+- `slidev/private/<name>/`: **私有报告**（同结构）— 已 gitignore：不进 git、不部署，仅本地预览/导出
 - `docs/`: provenance 与版权说明
 - `slidev/new-report.sh`: 一键新建报告
 
@@ -48,6 +49,22 @@ git add slides/juno-dci-2026
 git commit -m "add juno-dci-2026"
 git push                            # → Actions 自动构建并发布
 ```
+
+## Private decks（不公开的报告）
+
+不公开的报告放 `slidev/private/<name>/` —— **已 gitignore，永不进 git、永不部署**：
+
+```bash
+cd slidev
+./new-report.sh --private internal-review        # 创建（骨架同公开 deck）
+npx slidev private/internal-review/slides.md     # 本地预览
+npx slidev export private/internal-review/slides.md --per-slide \
+  --output private/internal-review/artifacts/report.pdf   # 导出 PDF
+```
+
+- 源码只留在本机；CI 看不到它（已 gitignore，且不在 `slides/` 下，任何构建循环都不会碰）
+- 分享产物时照旧用 `artifacts` 软链指向 Nextcloud（分享链接可设密码/有效期）
+- 想要版本历史/多机同步：可把 `private/` 升级为独立的**免费私有 repo**（私有 repo 免费；"私有 repo + Pages"才需要 Pro）
 
 ## GitHub Pages
 
