@@ -22,7 +22,7 @@ defaults:
   class: slidev-layout h-full
 ---
 
-<img class="cepc-logo" src="./assets/cepc.png" alt="CEPC logo">
+<img class="cepc-logo" src="/assets/cepc.png" alt="CEPC logo">
 <div class="eyebrow">CEPC2026 · OFFLINE COMPUTING & SOFTWARE</div>
 <div class="cover">
 <div class="cover-title">Grid Data Transfer Infrastructure for CEPC</div>
@@ -36,7 +36,7 @@ defaults:
 
 ---
 
-<img class="cepc-logo" src="./assets/cepc.png" alt="CEPC logo">
+<img class="cepc-logo" src="/assets/cepc.png" alt="CEPC logo">
 <div class="eyebrow">REPORT OUTLINE</div>
 <h1>Outline</h1>
 <div class="chapter-nav chapter-nav-outline">
@@ -52,7 +52,7 @@ defaults:
 
 ---
 
-<img class="cepc-logo" src="./assets/cepc.png" alt="CEPC logo">
+<img class="cepc-logo" src="/assets/cepc.png" alt="CEPC logo">
 <div class="chapter-nav chapter-nav-divider">
 <div class="chapter-nav-kicker">01 / 05</div>
 <div class="chapter-nav-title" role="heading" aria-level="1">Introduction</div>
@@ -65,13 +65,13 @@ defaults:
 
 ---
 
-<img class="cepc-logo" src="./assets/cepc.png" alt="CEPC logo">
+<img class="cepc-logo" src="/assets/cepc.png" alt="CEPC logo">
 <div class="eyebrow">INTRODUCTION · SHARED COMPUTING AND STORAGE</div>
 <h1>Why grid data transfer?</h1>
 <div class="grid-motivation">
 <p class="motivation-lead">LHC data processing and storage exceed a single centre’s capacity.</p>
 <div class="motivation-example">Worldwide LHC Computing Grid (WLCG)</div>
-<img class="motivation-tier-image" src="./assets/wlcg-tier-roles.svg" alt="Simplified WLCG tier roles: concentric layers with CERN at the centre. Label guides identify Tier-0 raw-data first copy and first reconstruction, Tier-1 archive and reprocessing, and Tier-2 simulation and analysis. The guides are not transfer routes.">
+<img class="motivation-tier-image" src="/assets/wlcg-tier-roles.svg" alt="Simplified WLCG tier roles: concentric layers with CERN at the centre. Label guides identify Tier-0 raw-data first copy and first reconstruction, Tier-1 archive and reprocessing, and Tier-2 simulation and analysis. The guides are not transfer routes.">
 <div class="motivation-caption">Simplified core tier roles · original illustration based on CERN/WLCG</div>
 <div class="motivation-roles">Workflows place jobs; transfers deliver data between sites.</div>
 <div class="motivation-cepc"><div><strong>CEPC plans distributed computing.</strong><small>First-five-year estimates · CEPC TDR (2025)</small></div><div class="motivation-number">460 <span>PB disk</span></div><div class="motivation-number">460 <span>PB tape</span></div></div>
@@ -83,10 +83,10 @@ defaults:
 
 ---
 
-<img class="cepc-logo" src="./assets/cepc.png" alt="CEPC logo">
+<img class="cepc-logo" src="/assets/cepc.png" alt="CEPC logo">
 <div class="eyebrow">CEPC · WORLDWIDE DATASET DISTRIBUTION</div>
 <h1>CEPC grid data transfer model</h1>
-<img class="infrastructure-model" src="./assets/cepc-transfer-model-refined.svg" alt="Applications outside the infrastructure submit requests to FTS and receive status. IAM issues scoped tokens to applications and provides issuer trust and keys to FTS and storage. FTS controls transfers; storage endpoints enforce access and move payload directly between example sites.">
+<img class="infrastructure-model" src="/assets/cepc-transfer-model-refined.svg" alt="Applications outside the infrastructure submit requests to FTS and receive status. IAM issues scoped tokens to applications and provides issuer trust and keys to FTS and storage. FTS controls transfers; storage endpoints enforce access and move payload directly between example sites.">
 <div class="infrastructure-scope">Planned token-based transfer model for CEPC, shown with example storage sites.</div>
 <footer><span>Sources: <a href="https://arxiv.org/abs/2510.05260" style="color:inherit">CEPC Detector TDR §13.7</a> · <a href="https://fts3-docs.web.cern.ch/fts3-docs/docs/overview.html" style="color:inherit">FTS documentation</a> · <a href="https://indigo-iam.github.io/v/current/docs/overview/" style="color:inherit">INDIGO IAM</a></span><span>CEPC2026 · 05 / 22</span></footer>
 
@@ -94,7 +94,7 @@ defaults:
 
 ---
 
-<img class="cepc-logo" src="./assets/cepc.png" alt="CEPC logo">
+<img class="cepc-logo" src="/assets/cepc.png" alt="CEPC logo">
 <div class="eyebrow">JUNO · OPERATING EXPERIENCE</div>
 <h1>JUNO: operating experience for CEPC</h1>
 <div class="juno-bridge">
@@ -112,7 +112,7 @@ defaults:
 
 ---
 
-<img class="cepc-logo" src="./assets/cepc.png" alt="CEPC logo">
+<img class="cepc-logo" src="/assets/cepc.png" alt="CEPC logo">
 <div class="chapter-nav chapter-nav-divider">
 <div class="chapter-nav-kicker">02 / 05</div>
 <div class="chapter-nav-title" role="heading" aria-level="1">FTS4</div>
@@ -126,14 +126,14 @@ defaults:
 ---
 
 
-<img class="cepc-logo" src="./assets/cepc.png" alt="CEPC logo">
+<img class="cepc-logo" src="/assets/cepc.png" alt="CEPC logo">
 <div class="eyebrow">FTS AT IHEP · SERVICE AND MONITORING</div>
 <h1>FTS3 operation and monitoring at IHEP</h1>
 <div class="fts-section fts-ops-service">
 <p class="fts-ops-version">FTS3 server 3.14.5 · dedicated RPM deployment · VOMS proxies in production</p>
 <div class="fts-note">September 2026 service snapshot; JWT workflows are under test.</div>
 <div class="fts-ops-pipeline"><div><strong>FTS events</strong><span>fts-activemq</span></div><b>→</b><div><strong>ActiveMQ</strong></div><b>→</b><div><strong>MonPipe</strong><span>IHEP · STOMP consumer</span></div><b>→</b><div><strong>Elasticsearch</strong><span>Shared service</span></div><b>→</b><div><strong>Grafana</strong></div></div>
-<div class="fts-ops-monitoring"><img class="fts-ops-dashboard" src="./assets/dashboard-admin-throughput-plot.png" alt="Cropped original FTS throughput plot, September 6–12, with MiB/s axis and date labels preserved; right-hand link legend omitted."><div class="fts-ops-monitor-copy"><h2>Operators can follow</h2><p>Transfer volume, file counts, rates, success and failures.</p><h2>Filter the full dashboard</h2><p>By site, endpoint and workload.</p><div class="fts-note">Workshop snapshot · 6–12 Sep 2026</div></div></div>
+<div class="fts-ops-monitoring"><img class="fts-ops-dashboard" src="/assets/dashboard-admin-throughput-plot.png" alt="Cropped original FTS throughput plot, September 6–12, with MiB/s axis and date labels preserved; right-hand link legend omitted."><div class="fts-ops-monitor-copy"><h2>Operators can follow</h2><p>Transfer volume, file counts, rates, success and failures.</p><h2>Filter the full dashboard</h2><p>By site, endpoint and workload.</p><div class="fts-note">Workshop snapshot · 6–12 Sep 2026</div></div></div>
 </div>
 <footer><span>Source: <a href="https://indico.cern.ch/event/1639200/contributions/7225206/attachments/3342094/5990032/FTS_IHEP_v2.pdf" style="color:inherit">FTS Status and Future Plan at IHEP</a> · September 2026 · pp.4, 11–13</span><span>CEPC2026 · 08 / 22</span></footer>
 
@@ -142,7 +142,7 @@ defaults:
 ---
 
 
-<img class="cepc-logo" src="./assets/cepc.png" alt="CEPC logo">
+<img class="cepc-logo" src="/assets/cepc.png" alt="CEPC logo">
 <div class="eyebrow">FTS AT IHEP · OPERATIONS AND COOPERATION</div>
 <h1>JUNO operations contribute to FTS development</h1>
 <div class="fts-section fts-ops-cooperation">
@@ -158,7 +158,7 @@ defaults:
 
 ---
 
-<img class="cepc-logo" src="./assets/cepc.png" alt="CEPC logo">
+<img class="cepc-logo" src="/assets/cepc.png" alt="CEPC logo">
 <div class="eyebrow">FTS4 · PREPARING FOR RUN 4</div>
 <h1>Why the transfer service needs FTS4</h1>
 <div class="fts4-rationale">
@@ -174,7 +174,7 @@ defaults:
 ---
 
 
-<img class="cepc-logo" src="./assets/cepc.png" alt="CEPC logo">
+<img class="cepc-logo" src="/assets/cepc.png" alt="CEPC logo">
 <div class="eyebrow">FTS4 · CORE CHANGES</div>
 <h1>What changes in FTS4</h1>
 <div class="fts4-features">
@@ -191,7 +191,7 @@ defaults:
 ---
 
 
-<img class="cepc-logo" src="./assets/cepc.png" alt="CEPC logo">
+<img class="cepc-logo" src="/assets/cepc.png" alt="CEPC logo">
 <div class="eyebrow">IHEP · FTS SERVICE DEVELOPMENT AND JUNO PREPARATIONS</div>
 <h1>IHEP's next steps for the FTS service</h1>
 <div class="fts-parallel">
@@ -209,7 +209,7 @@ defaults:
 
 ---
 
-<img class="cepc-logo" src="./assets/cepc.png" alt="CEPC logo">
+<img class="cepc-logo" src="/assets/cepc.png" alt="CEPC logo">
 <div class="chapter-nav chapter-nav-divider">
 <div class="chapter-nav-kicker">03 / 05</div>
 <div class="chapter-nav-title" role="heading" aria-level="1">TPC</div>
@@ -223,7 +223,7 @@ defaults:
 ---
 
 
-<img class="cepc-logo" src="./assets/cepc.png" alt="CEPC logo">
+<img class="cepc-logo" src="/assets/cepc.png" alt="CEPC logo">
 <div class="eyebrow">THIRD-PARTY COPY · DATA AND CONTROL</div>
 <h1>Third-party copy keeps bulk data off the client</h1>
 <div class="tpc-section">
@@ -260,7 +260,7 @@ defaults:
 ---
 
 
-<img class="cepc-logo" src="./assets/cepc.png" alt="CEPC logo">
+<img class="cepc-logo" src="/assets/cepc.png" alt="CEPC logo">
 <div class="eyebrow">JUNO · COMMON INTERFACES AND IHEP EXPERIENCE</div>
 <h1>JUNO connects different stores through HTTP-TPC</h1>
 <div class="token-paths">
@@ -278,7 +278,7 @@ defaults:
 
 ---
 
-<img class="cepc-logo" src="./assets/cepc.png" alt="CEPC logo">
+<img class="cepc-logo" src="/assets/cepc.png" alt="CEPC logo">
 <div class="chapter-nav chapter-nav-divider">
 <div class="chapter-nav-kicker">04 / 05</div>
 <div class="chapter-nav-title" role="heading" aria-level="1">IAM</div>
@@ -291,7 +291,7 @@ defaults:
 
 ---
 
-<img class="cepc-logo" src="./assets/cepc.png" alt="CEPC logo">
+<img class="cepc-logo" src="/assets/cepc.png" alt="CEPC logo">
 <div class="eyebrow">IDENTITY AND ACCESS MANAGEMENT · TRUSTED ISSUERS</div>
 <h1>IAM connects identity to scoped access</h1>
 <div class="iam-scopes">
@@ -315,7 +315,7 @@ defaults:
 
 ---
 
-<img class="cepc-logo" src="./assets/cepc.png" alt="CEPC logo">
+<img class="cepc-logo" src="/assets/cepc.png" alt="CEPC logo">
 <div class="eyebrow">HERD · DEPLOYED IAM SERVICE</div>
 <h1>IHEP operates IAM for HERD</h1>
 <div class="iam-section iam-herd">
@@ -331,7 +331,7 @@ defaults:
 
 ---
 
-<img class="cepc-logo" src="./assets/cepc.png" alt="CEPC logo">
+<img class="cepc-logo" src="/assets/cepc.png" alt="CEPC logo">
 <div class="eyebrow">LOCAL PLANS · JWT MIGRATION AND NEW SERVICES</div>
 <h1>IAM's future at IHEP</h1>
 <div class="iam-future">
@@ -344,7 +344,7 @@ defaults:
 
 ---
 
-<img class="cepc-logo" src="./assets/cepc.png" alt="CEPC logo">
+<img class="cepc-logo" src="/assets/cepc.png" alt="CEPC logo">
 <div class="chapter-nav chapter-nav-divider">
 <div class="chapter-nav-kicker">05 / 05</div>
 <div class="chapter-nav-title" role="heading" aria-level="1">Summary</div>
@@ -357,7 +357,7 @@ defaults:
 
 ---
 
-<img class="cepc-logo" src="./assets/cepc.png" alt="CEPC logo">
+<img class="cepc-logo" src="/assets/cepc.png" alt="CEPC logo">
 <div class="eyebrow">IHEP · PLANNED LOCAL MILESTONES</div>
 <h1>IHEP's transfer roadmap</h1>
 <div class="ihep-roadmap">
@@ -376,7 +376,7 @@ defaults:
 
 ---
 
-<img class="cepc-logo" src="./assets/cepc.png" alt="CEPC logo">
+<img class="cepc-logo" src="/assets/cepc.png" alt="CEPC logo">
 <div class="eyebrow">SUMMARY · EXPERIENCE AND CEPC PLANS</div>
 <h1>Summary</h1>
 <div class="iam-roadmap-closing">
@@ -389,7 +389,7 @@ defaults:
 
 ---
 
-<img class="cepc-logo" src="./assets/cepc.png" alt="CEPC logo">
+<img class="cepc-logo" src="/assets/cepc.png" alt="CEPC logo">
 <div class="chapter-nav chapter-nav-divider">
 <div class="chapter-nav-kicker">SUPPLEMENTARY MATERIAL</div>
 <div class="chapter-nav-title" role="heading" aria-level="1">Backup</div>
@@ -401,17 +401,17 @@ defaults:
 
 ---
 
-<img class="cepc-logo" src="./assets/cepc.png" alt="CEPC logo">
+<img class="cepc-logo" src="/assets/cepc.png" alt="CEPC logo">
 <div class="eyebrow">COMMUNITY · EXPLICIT CITATION</div>
 <h1>LHCb explicitly cited the IHEP multihop case</h1>
-<div class="evidence"><img src="./assets/lhcb-workshop-2026-p09.png" alt="Original LHCb workshop slide, page 9, including the quote From Xuantong talk ! and the relay cleanup proposals."><div><div class="quote">“From<br>Xuantong talk !”</div><p>IHEP's operational example was reused in LHCb's discussion of conditional relay-file cleanup.</p><p class="small boundary">Cleanup was already on LHCb's 2025 list. This is a citation of the 2026 case, not a claim of invention or implementation.</p></div></div>
+<div class="evidence"><img src="/assets/lhcb-workshop-2026-p09.png" alt="Original LHCb workshop slide, page 9, including the quote From Xuantong talk ! and the relay cleanup proposals."><div><div class="quote">“From<br>Xuantong talk !”</div><p>IHEP's operational example was reused in LHCb's discussion of conditional relay-file cleanup.</p><p class="small boundary">Cleanup was already on LHCb's 2025 list. This is a citation of the 2026 case, not a claim of invention or implementation.</p></div></div>
 <footer><span>Source: Christophe Haen, <a href="https://indico.cern.ch/event/1639200/contributions/7226160/attachments/3343074/5992121/FTS4LHCb.pdf" style="color:inherit">LHCb &lt;3 FTS[34]</a> · 15 Sep 2026 · pp.8–9</span><span>BACKUP B01 / 4</span></footer>
 
 
 
 ---
 
-<img class="cepc-logo" src="./assets/cepc.png" alt="CEPC logo">
+<img class="cepc-logo" src="/assets/cepc.png" alt="CEPC logo">
 <div class="eyebrow">BACKUP · MEASUREMENT SCOPE</div>
 <h1>What the numbers describe</h1>
 <table class="scope-table"><thead><tr><th>System / date</th><th>Evidence</th><th>Scope and limits</th></tr></thead><tbody><tr><td>JUNO<br><small>2026 YTD; 14 Sep report</small></td><td>11.65 PB<br>6,333,642 files transferred</td><td>Cumulative transfers;<br>not unique datasets</td></tr><tr><td>JUNO<br><small>Same reporting period</small></td><td>81.56% per attempt<br>97.38% with ≤3 retries</td><td>Different denominators;<br>not service availability</td></tr><tr><td>IHEP FTS4<br><small>September 2026</small></td><td>2 × 50 MiB<br>VOMS / unmanaged JWT</td><td>Functional checks;<br>not a load benchmark</td></tr><tr><td>CERN / DC27<br><small>September 2026 findings</small></td><td>40k concurrent transfers<br>20M queued requests</td><td>40k test: expected failures;<br>20M queue: target</td></tr></tbody></table>
@@ -421,7 +421,7 @@ defaults:
 
 ---
 
-<img class="cepc-logo" src="./assets/cepc.png" alt="CEPC logo">
+<img class="cepc-logo" src="/assets/cepc.png" alt="CEPC logo">
 <div class="eyebrow">BACKUP · IHEP/JUNO PROPOSALS</div>
 <h1>IHEP test scope and upstream dependencies</h1>
 <table class="rate-table"><thead><tr><th>Candidate load</th><th>One-way</th><th>Aggregate</th><th>Duration</th></tr></thead><tbody><tr><td>Sustained</td><td>20 Gb/s</td><td>40 Gb/s</td><td>About two weeks</td></tr><tr><td>Extreme</td><td>≥40 Gb/s</td><td>≥80 Gb/s</td><td>Short peaks within 1–2 days</td></tr></tbody></table>
@@ -433,7 +433,7 @@ defaults:
 
 ---
 
-<img class="cepc-logo" src="./assets/cepc.png" alt="CEPC logo">
+<img class="cepc-logo" src="/assets/cepc.png" alt="CEPC logo">
 <div class="eyebrow">BACKUP · REFERENCES</div>
 <h1>Sources</h1>
 <div class="references">
