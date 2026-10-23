@@ -6,3 +6,5 @@ slidev/qa/output/
 __pycache__/
 *.log
 *.tmp
+.slim/deepwork/
+.omo/
