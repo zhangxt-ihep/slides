@@ -1,65 +1,47 @@
 # AGENTS.md — Slides Hub
 
-Slidev 多报告 hub（详见 `README.md`）。每个报告是 `slides/<name>/` 下的自包含 deck。
+先读仓库根目录的`README.md`；命令、目录约定和QA入口以README及实际脚本为准。本文件约束执行流程，机器路径和同步方式由个人skill补充。
 
-## 工作流速览
+## 开始前
 
-```bash
-cd slidev
-./new-report.sh <name>                    # 新建 deck
-npx slidev slides/<name>/slides.md        # 预览
-npx slidev build slides/<name>/slides.md --out "$(pwd)/dist/<name>"   # 构建
-git push                                  # → Actions 自动部署 Pages
-```
+- 确定报告入口、公开或私有、需要编辑/预览/导出/发布中的哪些动作。沿用用户已明确的授权和交付目录，不重复询问；权限或目标变化时再确认。
+- 记录`git status`基线。已有无关修改不删除、不混入提交；公开名称可以与私有工作目录不同，发布前确认准确slug。
+- `slides/<name>/`是公开源码；`private/<name>/`已忽略，永不暂存或强制加入Git。
 
-## 产物导出 → Nextcloud（artifacts 软链）
+## 内容与资源
 
-**机制**：每个 deck 有一个 `artifacts` 软链接，指向本次报告的 Nextcloud 目录。
-Agent 只需输出到 `artifacts/`，不用记 Nextcloud 绝对路径。
+- 保持每个deck自包含，复用共享依赖、主题与已有样式，不因发布或导出改动已确认的内容和版式。
+- 自有图片使用`public/assets/`和`/assets/...`引用。共享`public`软链可用于现有共享素材；不要通过它写入专属素材或私有资料。
+- 公开副本只带实际需要且允许公开的资产及其出处，不顺手复制整套历史素材、原始响应或QA目录。
 
-**步骤**：
+## 私有稿转公开版
 
-1. 向用户确认本次报告的 Nextcloud 目录（通常形如
-   `/home/nextcloud/工作相关/外部会议和出访/<会议名>/`）
-2. 创建软链（每个 deck 一次）：
-   ```bash
-   cd slidev/slides/<name>
-   ln -sfn "<nextcloud 目录>" artifacts
-   ```
-3. 导出 PDF（首选）：
-   ```bash
-   cd slidev
-   npx slidev export slides/<name>/slides.md --per-slide \
-     --output "slides/<name>/artifacts/<名字>.pdf"
-   ```
-4. 导出 PPTX（可选；复杂布局还原度有限，仅需可编辑时用）：
-   ```bash
-   npx slidev export slides/<name>/slides.md --format pptx \
-     --output "slides/<name>/artifacts/<名字>.pptx"
-   ```
-5. 产物落在 `artifacts/`（= Nextcloud），自动同步（5 分钟内）；
-   需立即同步：`systemctl start nextcloud-sync.service`
+1. 取得明确公开授权，并确认slug。保留私有原稿，另建公开副本，不直接移动私有目录。
+2. 按本次公开策略移除私有讲稿、筹备记录等；核对可见内容、页数、样式和必要资产没有被误改。
+3. `--without-notes`只处理构建结果，不能保护Git源码里的备注。已批准公开的讲稿可以保留，不能对所有deck强制“零备注”。额外Markdown即使不构建，提交后仍然公开。
+4. 审查源码、构建结果和实际暂存清单。只暂存授权文件，不使用`git add .`或`git add -A`代替清单审查。
+5. 按授权提交/推送；核对Actions成功及线上入口、代表性深链接、图片与字体。数字深链接的预期文档404和资产404应区分处理。
 
-## 私有 deck（不公开的报告）
+## 验证预算
 
-不公开的报告放 `private/<name>/`（已 gitignore，**永不进 git、永不部署**）：
+- 小改只检查受影响页面与必要对照页；冻结稿再做全量浏览器/实际PDF验收。输入、代码和环境未变的证据可以复用。
+- `npm run check`保留FTS/JUNO专项测试，并运行图片预加载检查器的测试；不能据此宣称新deck的内容和布局已验收。
+- 发布构建必须使用实际`--base`，并运行`node qa/check-image-preloads.mjs <dist-directory> <base-path>`；CI对每个公开deck执行。浏览器仍须检查资源请求，防止SPA fallback用HTML 200掩盖缺失文件。
+- 导出使用`--per-slide`，检查实际PDF页数、分页、字体嵌入、图片、链接和私有备注边界。记录真正影响产物的警告，不为消除日志而改稿；符号字体回退不自动等于正文换字体。
+- 从同一冻结源发布和导出；并行任务不得修改另一任务仍在使用的源文件。仅URL迁移且内容、样式和资产字节不变时，可以证明等价后复用已验收PDF。
 
-```bash
-./new-report.sh --private <name>              # 创建
-npx slidev private/<name>/slides.md           # 本地预览
-npx slidev export private/<name>/slides.md --per-slide \
-  --output "private/<name>/artifacts/<名字>.pdf"   # 导出（artifacts 软链可选 → Nextcloud）
-```
+## 交付
 
-- **永远不要** `git add private/`（也不要 `-f` 强加）—— 私有源码必须只留在本机
-- **不要**把它移到 `slides/` 下（那会被 CI 构建并发布）
-- 产物要分享时，照旧建 `artifacts` 软链指向 Nextcloud
+- 正式产物只通过该deck的`artifacts/`软链写入用户确认的目录，不直接写同步目录的绝对路径；链接本身不提交。
+- 已有正确软链直接复用；缺失时确认目标后创建。普通目录或指向不同位置的链接须先处理清楚，不能用强制替换掩盖冲突。
+- 临时构建、截图、测试PDF和日志留在独立临时工作区或已忽略的QA输出目录，不混入正式交付目录。
+- PDF使用明确版本名，覆盖已有文件须确认。旧PDF与用户原始参考资料默认保留，目录整理也要保留移动清单和内容校验。
+- 云同步必须有远端文件证据；本地存在、定时器运行或服务退出成功都不足以单独证明上传成功。无法核对时写明未验证，不暴露认证信息。
+- 交付时给出准确网页URL、PDF文件名/目录、页数和同步状态；不分享包含私有准备材料的整个目录。
 
-## 约定
+## 收尾
 
-- 私有 deck 只放 `private/`；`slides/` 下的一切都会被部署
-- `artifacts` 软链**不提交 git**（已在 `.gitignore`）
-- 产物**只写 `artifacts/`**，不要直接写 Nextcloud 绝对路径
-- 只有 `slides.md` 参与部署；额外 `*.md`（如 juno 的 `plenary-summary.md`）保留在 deck 内不部署
-- 每个 deck 私有样式（`style.css` 或 `styles/index.css`）；主题在 frontmatter 选择（scholarly / neversink）
-- 站点根 `404.html` 是 SPA fallback，深链接 `/<deck>/<页码>` 可直达
+- 明确预览服务是否继续保留；关闭时只操作本次记录的PID/端口，不按宽泛进程名清理其他服务。
+- 经授权按明确清单清理本次临时文件；先检查目标和软链边界。保留必要的最终验收记录，私有记录留在`private/<name>/qa/`，不上传到公开deck。
+- 核对最终`git status`与远端提交状态。只有状态为空才称“工作区干净”；保留的既有改动应逐项说明，不以“没有新增改动”代替。
+- 避免为收尾创建新的长期临时文件或额外自动化框架；最终说明实际完成、未检查和仍待用户决定的事项。

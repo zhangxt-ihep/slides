@@ -6,7 +6,7 @@
     "dev": "slidev slides/fts-xrootd-workshop-2026/slides.md --bind 127.0.0.1 --port 3030",
     "build": "slidev build slides/fts-xrootd-workshop-2026/slides.md --without-notes",
     "export": "slidev export slides/fts-xrootd-workshop-2026/slides.md --per-slide --output qa/output/FTS_IHEP_v2.pdf",
-    "check": "node qa/check-v2.mjs && node qa/check-juno-map.mjs"
+    "check": "node qa/check-v2.mjs && node qa/check-juno-map.mjs && node --test qa/check-image-preloads.test.mjs"
   },
   "devDependencies": {
     "@fontsource/arimo": "5.3.0",

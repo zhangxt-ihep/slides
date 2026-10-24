@@ -44,6 +44,7 @@ jobs:
             echo "=== Building $name ==="
             npx slidev build "$dir/slides.md" --without-notes \
               --out "$SITE/$name" --base "/$REPO/$name/"
+            node qa/check-image-preloads.mjs "$SITE/$name" "/$REPO/$name/"
           done
           # 根导航页
           {

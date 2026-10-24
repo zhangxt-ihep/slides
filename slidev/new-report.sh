@@ -61,14 +61,18 @@ EOF
 
 echo "✓ 已创建 $target/"
 echo ""
-echo "  编辑:   slidev/$target/slides.md"
-echo "  预览:   cd slidev && npx slidev $target/slides.md"
-echo "  导出:   cd slidev && npx slidev export $target/slides.md --per-slide --output /tmp/$name.pdf"
+echo "  以下命令在仓库的 slidev/ 目录执行："
+echo "  编辑:   $target/slides.md"
+echo "  预览:   npx slidev $target/slides.md"
+echo "  交付目录: 确认目标后建立 artifacts 软链；已有正确链接直接复用。"
+echo "            ln -s '<已确认且存在的交付目录>' '$target/artifacts'"
+echo "  导出:   npx slidev export $target/slides.md --per-slide --output '$target/artifacts/${name}_YYYYMMDD.pdf'"
+echo "          替换版本日期；已有PDF未经确认不要覆盖。临时构建/截图不要放入交付目录。"
 if [ "$mode" = "private" ]; then
   echo ""
   echo "  私有 deck：位于 private/（已 gitignore），不进 git、不部署。"
-  echo "  产物分享: cd $target && ln -sfn <nextcloud目录> artifacts"
 else
+  echo "  推送前: 审查源码、备注和暂存清单；--without-notes 不会删除Git源码中的备注。"
   echo "  推送:   git add $target && git commit -m 'add $name' && git push"
   echo "          → GitHub Actions 自动构建并发布到 Pages"
 fi
