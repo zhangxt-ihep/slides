@@ -95,7 +95,7 @@ https://zhangxt-ihep.github.io/slides/                      ← 导航页
 https://zhangxt-ihep.github.io/slides/<报告名>/             ← 各报告
 ```
 
-workflow 用 `${{ github.event.repository.name }}` 动态生成 `--base` 路径，仓库改名无需改动。站点根的 `404.html` 是 SPA fallback，保证 `/<报告名>/<页码>` 深链接可直达。
+workflow 用 `${{ github.event.repository.name }}` 动态生成 `--base` 路径，仓库改名无需改动。站点根的 `404.html` 为history路由提供SPA fallback，支持`/<报告名>/<页码>`深链接；显式使用`routerMode: hash`的deck（目前为JUNO）应使用`/<报告名>/#/<页码>`。
 
 ### 图片资源与构建验收
 
