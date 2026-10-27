@@ -7,6 +7,7 @@ Slidev hub — 所有报告共用一个环境（依赖、主题只装一次）�
 - [FTS-XRootD Workshop 2026](https://zhangxt-ihep.github.io/slides/fts-xrootd-workshop-2026/) — scholarly 主题
 - [JUNO Collaboration Summer 2026](https://zhangxt-ihep.github.io/slides/juno-collaboration-summer-2026/) — neversink 主题
 - [CEPC Workshop 2026 — Grid Data Transfer Infrastructure for CEPC](https://zhangxt-ihep.github.io/slides/cepc-workshop-2026/) — scholarly 主题
+- [Rucio Community Workshop 2026 — Rucio Status at IHEP](https://zhangxt-ihep.github.io/slides/rucio-workshop-2026/) — scholarly 主题
 
 ## Layout
 
